@@ -12,14 +12,14 @@ public class HelloController {
     private KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
-    public void setKafkaTemplate(KafkaTemplate<String, String> kafkaTemplate){
+    public void setKafkaTemplate(KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
     @GetMapping
-    public void sayHello(){
+    public String sayHello() {
         String msg = "Добрый день";
-        System.out.println(msg);
-       kafkaTemplate.send("hello", msg);
+        kafkaTemplate.send("hello", msg);
+        return msg;
     }
 }
